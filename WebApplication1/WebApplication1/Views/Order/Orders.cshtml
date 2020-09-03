@@ -1,0 +1,14 @@
+﻿@model OrderViewModel
+
+@foreach (var order in Model.OrdersFromId)
+{
+    @foreach (var item in order.OrderDetails)
+    {
+        <p>@item.Art.Name</p>
+        <p>@order.OrderPlaced</p>
+    }
+
+    <br />
+    <br />
+    <br />
+}

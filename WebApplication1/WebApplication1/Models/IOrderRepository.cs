@@ -9,6 +9,8 @@ namespace WebApplication1.Models
     public interface IOrderRepository
     {
         void CreateOrder(Order order, string _userId);
+        List<Order> GetOrdersFromId();
         void DeleteAllOrders();
+
     }
 }

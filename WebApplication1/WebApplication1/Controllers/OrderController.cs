@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -55,6 +56,13 @@ namespace WebApplication1.Controllers
         public IActionResult CheckoutComplete()
         { 
             return View();
+        }
+
+        public ViewResult Orders()
+        {
+            OrderViewModel orderViewModel = new OrderViewModel();
+            orderViewModel.OrdersFromId = _orderRepository.GetOrdersFromId();
+            return View(orderViewModel);
         }
 
         public IActionResult DeleteAllOrders()

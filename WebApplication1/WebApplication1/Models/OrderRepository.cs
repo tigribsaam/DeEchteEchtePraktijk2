@@ -28,8 +28,8 @@ namespace WebApplication1.Models
         public void CreateOrder(Order order, string _userId)
         {
 
-            order.UserId = _userId;
-            _UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            order.UserId = _UserId;
+            //_UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             order.OrderPlaced = DateTime.Now;
 
             var shoppingCartItems = _shoppingCart.ShoppingCartItems;
@@ -42,6 +42,7 @@ namespace WebApplication1.Models
             {
                 var orderDetail = new OrderDetail
                 {
+                    Art = shoppingCartItem.Art,
                     Months = shoppingCartItem.Months,
                     ArtId = shoppingCartItem.Art.ArtId,
                     Price = shoppingCartItem.Art.PricePerMonth
@@ -54,6 +55,37 @@ namespace WebApplication1.Models
 
             _applicationDbContext.SaveChanges();
         }
+
+
+
+        public List<Order> GetOrdersFromId()
+        {
+            List<Order> orders = new List<Order>
+            {
+
+            };
+
+            foreach(var order in _applicationDbContext.Orders)
+            {
+                if(order.UserId == _UserId)
+                {
+                    orders.Add(order);
+                }
+            }
+
+            return orders;
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         public void DeleteAllOrders()
         {
