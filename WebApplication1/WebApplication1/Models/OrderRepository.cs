@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,10 +66,18 @@ namespace WebApplication1.Models
 
             };
 
-            foreach(var order in _applicationDbContext.Orders)
+            // Load all blogs and related posts.
+            var AllOrders = _applicationDbContext.Orders
+                                .Include("OrderDetails.Art")
+                                .ToList();
+
+
+            foreach (var order in AllOrders)
             {
                 if(order.UserId == _UserId)
                 {
+
+
                     orders.Add(order);
                 }
             }
