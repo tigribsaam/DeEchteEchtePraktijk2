@@ -5,31 +5,82 @@
 @if (Model.OrdersFromId.Count > 0)
 {
     @foreach (var order in Model.OrdersFromId)
-    {<div>
-        @foreach (var item in order.OrderDetails)
-        {
-            <p>@item.Art.Name</p>
-            <p>@item.Months</p>
-            <p>@item.Price</p>
-            <p>@order.OrderPlaced.</p>
-            <p>
-                <a asp-controller="Order"
-                    asp-action="ReturnArt"
-                    asp-route-artId="@item.ArtId">terug brengen</a>
-            </p>
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th colspan="6"> @order.OrderPlaced.ToString("d")</th>
+                </tr>
+                <tr>
+                    <th>Naam</th>
+                    <th></th>
+                    <th>Aantal Maanden</th>
+                    <th>Prijs</th>
+                    <th>Uiterlijk terug brengen voor:</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-        }
 
-        <p>@order.OrderTotal.</p>
+            <tbody>
+                @foreach (var item in order.OrderDetails)
+                {
+                    <tr>
+                        <td class="text-left">@item.Art.Name</td>
+                        <td class="text-left">
+                            <img src="@item.Art.ImageURL" alt="@item.Art.Name" width="100px" />
+                        </td>
+                        <td>@item.Months</td>
+                        <td>@item.Price</td>
+                        <td>@order.OrderPlaced.AddMonths(item.Months).ToString("d")</td>
+                        <td>
+                            <a asp-controller="Order"
+                               asp-action="ReturnArt"
+                               asp-route-artId="@item.ArtId">terug brengen</a>
+                        </td>
 
-        <br />
-        <br />
-        <br />
-    </div>  
-      }
+                    </tr>
+                }
+            </tbody>
+
+
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @order.OrderTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+
+    @*{
+            <div>
+                @foreach (var item in order.OrderDetails)
+                {
+                    <p>@item.Art.Name</p>
+                    <p>@item.Months</p>
+                    <p>@item.Price</p>
+                    <p class="date">@order.OrderPlaced.ToString("d")</p>
+                    <p>Uiterlijk terug brengen voor: @order.OrderPlaced.AddMonths(item.Months).ToString("d")</p>
+                    <p>
+                        <a asp-controller="Order"
+                           asp-action="ReturnArt"
+                           asp-route-artId="@item.ArtId">terug brengen</a>
+                    </p>
+
+                }
+
+                <p>@order.OrderTotal.</p>
+
+                <br />
+                <br />
+                <br />
+            </div>
+        }*@
 }
 else if (Model.OrdersFromId.Count == 0)
 {
     <h2>U heeft nog niet iets eerder gekocht.</h2>
 }
-
