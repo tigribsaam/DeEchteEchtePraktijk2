@@ -1,0 +1,55 @@
+﻿@model ShoppingCartViewModel
+ 
+<h2>Uw winkelwagen</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th></th>
+            <th>aantal maanden</th>
+            <th></th>
+            <th class="text-right">Prijs per maand</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+        {
+        <tr>
+            <td class="text-left">@line.Art.Name</td>
+            <td>
+                <p class="button">
+                    <a asp-controller="ShoppingCart"
+                       asp-action="RemoveFromShoppingCart"
+                       asp-route-artId="@line.Art.ArtId">-</a>
+                </p>
+            </td>
+            <td class="text-center">@line.Months</td>
+            <td>
+                <p class="button">
+                    <a asp-controller="ShoppingCart"
+                       asp-action="AddToShoppingCart"
+                       asp-route-artId="@line.Art.ArtId">+</a>
+                </p>
+            </td>
+            <td class="text-right">@line.Art.PricePerMonth.ToString("c")</td>
+            <td class="text-right">
+                @((line.Months * line.Art.PricePerMonth).ToString("c"))
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.ShoppingCartTotal.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-controller="Order" asp-action="CheckOut">Bestelling plaatsen</a>
+</div>

@@ -1,0 +1,13 @@
+﻿@model ArtListViewModel
+
+<div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Art" asp-action="NewArt">Kunst toevoegen</a>
+</div>
+
+@foreach (var item in Model.AllArt)
+{
+    @if (item.Available)
+    {
+        <partial name="_ArtCard" model="item" />
+    }
+}

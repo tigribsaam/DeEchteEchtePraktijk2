@@ -1,0 +1,15 @@
+﻿@model Art 
+
+    <div>
+        <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId">
+            <img src="@Model.ImageURL" alt="@Model.Name" width="175">
+        </a>
+        <h2>@Model.Name</h2>
+        <p>@Model.Artist </p>
+        <p>€ @Model.PricePerMonth per maand</p>
+        <p class="button">
+            <a asp-controller="ShoppingCart"
+               asp-action="AddToShoppingCart"
+               asp-route-artId="@Model.ArtId">Huren</a>
+        </p>
+    </div>

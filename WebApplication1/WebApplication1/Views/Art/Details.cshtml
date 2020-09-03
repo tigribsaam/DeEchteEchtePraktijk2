@@ -1,0 +1,19 @@
+﻿@model Art
+
+<img src="@Model.ImageURL" alt="Model.Name" width=50%>
+<h1>@Model.Name</h1>
+<h3>@Model.Artist</h3>
+<h3>€ @Model.PricePerMonth per maand</h3>
+<p>@Model.Description</p>
+<p class="button">
+    <a class="button"
+       asp-controller="ShoppingCart"
+       asp-action="AddToShoppingCart"
+       asp-route-artId="@Model.ArtId">Huren</a>
+</p>
+<a asp-controller="Art"
+   asp-action="DeleteArt"
+   asp-route-artId="@Model.ArtId">verwijderen</a>
+
+
+

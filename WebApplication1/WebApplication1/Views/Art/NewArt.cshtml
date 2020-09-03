@@ -1,0 +1,53 @@
+﻿@model Art
+
+<form asp-action="NewArt" method="post" class=" form-horizontal" role="form">
+    <h1>Kunst toevoegen</h1>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Artist" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Artist" class="form-control" />
+            <span asp-validation-for="Artist" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageURL" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="ImageURL" class="form-control" />
+            <span asp-validation-for="ImageURL" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <label asp-for="PricePerMonth" class="col-md-2 control-label"></label>
+    <div class="col-md-5">
+        <input asp-for="PricePerMonth" class="form-control" />
+        <span asp-validation-for="PricePerMonth" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Complete order" />
+        </div>
+    </div>
+
+</form>
