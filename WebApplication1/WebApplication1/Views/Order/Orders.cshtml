@@ -1,14 +1,27 @@
 ﻿@model OrderViewModel
 
-@foreach (var order in Model.OrdersFromId)
-{
-    @foreach (var item in order.OrderDetails)
-    {
-        <p>@item.Art.Name</p>
-        <p>@order.OrderPlaced</p>
-    }
+<h1> Bestel geschiedenis</h1>
 
-    <br />
-    <br />
-    <br />
+@if (Model.OrdersFromId.Count > 0)
+{
+    @foreach (var order in Model.OrdersFromId)
+    {
+        @foreach (var item in order.OrderDetails)
+        {
+            <p>@item.Art.Name</p>
+            <p>@item.Months</p>
+            <p>@item.Price</p>
+            <p>@order.OrderPlaced</p>
+        }
+        <p>@order.OrderTotal.</p>
+
+        <br />
+        <br />
+        <br />
+    }
 }
+else if(Model.OrdersFromId.Count == 0)
+{
+    <h2>U heeft nog niet iets eerder gekocht.</h2>
+}
+
