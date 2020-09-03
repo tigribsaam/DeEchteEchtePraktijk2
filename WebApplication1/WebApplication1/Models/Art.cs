@@ -20,11 +20,6 @@ namespace WebApplication1.Models
 
         [BindNever]
         public bool Available { get; set; }
-        // TODO: rented to?? 
-
-        // TODO: user class
-        // public User Artist { get; set; }
-
 
 
 

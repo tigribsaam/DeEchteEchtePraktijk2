@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
+    //requirements for input for values of order
     public class Order
     {
 

@@ -25,20 +25,19 @@ namespace WebApplication1.Models
             _UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
-
+        //creates order and saves to database
         public void CreateOrder(Order order, string _userId)
         {
 
             order.UserId = _UserId;
-            //_UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             order.OrderPlaced = DateTime.Now;
 
             var shoppingCartItems = _shoppingCart.ShoppingCartItems;
             order.OrderTotal = _shoppingCart.GetShoppingCartTotal();
 
             order.OrderDetails = new List<OrderDetail>();
-            //adding the order with its details
 
+            //get all shoppingcartitems and make orderdetails from them
             foreach (var shoppingCartItem in shoppingCartItems)
             {
                 var orderDetail = new OrderDetail
@@ -50,12 +49,11 @@ namespace WebApplication1.Models
               
                 };
 
+                //set bought art to unavailable
                 var selectedArt = _applicationDbContext.Art.FirstOrDefault(a => a.ArtId == orderDetail.ArtId);
                 selectedArt.Available = false;
 
                 _applicationDbContext.Update<Art>(selectedArt);
-
-                //orderDetail.Art.Available = false;
 
                 order.OrderDetails.Add(orderDetail);
             }

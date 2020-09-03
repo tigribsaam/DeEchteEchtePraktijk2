@@ -22,6 +22,7 @@ namespace WebApplication1.Controllers
             _shoppingCart = shoppingCart;
         }
 
+        // view of shoppingcart
         public ViewResult index()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -36,6 +37,7 @@ namespace WebApplication1.Controllers
             return View(ShoppingCartViewModel);
         }
 
+        //action to add item to shoppingcart or increase months
         public RedirectToActionResult AddToShoppingCart(int artId)
         {
             var selectedArt = _artRepository.AllArt.FirstOrDefault(a => a.ArtId == artId);
@@ -47,6 +49,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        //action to remove item from shoppingcart or decrease months
         public RedirectToActionResult RemoveFromShoppingCart(int artId)
         {
             var selectedArt = _artRepository.AllArt.FirstOrDefault(a => a.ArtId == artId);

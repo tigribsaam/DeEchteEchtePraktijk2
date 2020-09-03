@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
+    //interface for ArtRepository
     public interface IArtRepository
     {
         IEnumerable<Art> AllArt { get; }

@@ -26,13 +26,15 @@ namespace WebApplication1.Controllers
             _userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
+        //view of checkout
         public IActionResult CheckOut()
         {
             return View();
         }
 
 
-        //TODO: set rented art to unavailable
+        //view of checkout redirects to checkoutComplete if everything is filled out
+        //creates order and cleares cart if modelState is valid
         [HttpPost]
         public IActionResult CheckOut(Order order)
         {
@@ -53,11 +55,13 @@ namespace WebApplication1.Controllers
             return View(order);
         }
 
+        //view for when order is completed
         public IActionResult CheckoutComplete()
         { 
             return View();
         }
 
+        //view of all orders made in the past by user
         public ViewResult Orders()
         {
             OrderViewModel orderViewModel = new OrderViewModel();
@@ -65,6 +69,7 @@ namespace WebApplication1.Controllers
             return View(orderViewModel);
         }
 
+        //action to return art 
         public RedirectToActionResult ReturnArt(int artId)
         {
             _orderRepository.ReturnArt(artId);

@@ -22,6 +22,7 @@ namespace WebApplication1.Models
             _applicationDbContext = appDbContext;
         }
 
+        //returns shoppingcart
         public static ShoppingCart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?
@@ -36,6 +37,7 @@ namespace WebApplication1.Models
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
+        //adds items to shoppingcart or increases month
         public void AddToCart(Art art, int months)
         {
             var shoppingCartItem =
@@ -53,6 +55,7 @@ namespace WebApplication1.Models
 
                 _applicationDbContext.ShoppingCartItems.Add(shoppingCartItem);
             }
+            //prevents users from renting art for more than 12 months
             else if(shoppingCartItem.Months < 12)
             {
                 shoppingCartItem.Months++;
@@ -61,7 +64,7 @@ namespace WebApplication1.Models
         }
 
 
-
+        // removes items from shoppingcart or decreases month
         public int RemoveFromCart(Art art)
         {
             var shoppingCartItem =
@@ -72,6 +75,7 @@ namespace WebApplication1.Models
 
             if (shoppingCartItem != null)
             {
+                //prevents users from renting art less than 3 months
                 if (shoppingCartItem.Months >= 4)
                 {
                     shoppingCartItem.Months--;
@@ -88,6 +92,7 @@ namespace WebApplication1.Models
             return localAmount;
         }
 
+        //returns shoppingcartitems
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             return ShoppingCartItems ??
@@ -97,6 +102,7 @@ namespace WebApplication1.Models
                             .ToList());
         }
 
+        //clears shoppingcart in database
         public void ClearCart()
         {
             var cartItems = _applicationDbContext
@@ -108,6 +114,7 @@ namespace WebApplication1.Models
             _applicationDbContext.SaveChanges();
         }
 
+        //returns the total price of all art in shoppingcart
         public decimal GetShoppingCartTotal()
         { 
             var total = _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)

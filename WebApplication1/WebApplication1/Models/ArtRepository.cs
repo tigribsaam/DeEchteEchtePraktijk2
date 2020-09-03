@@ -15,6 +15,7 @@ namespace WebApplication1.Models
             _appDbContext = applicationDbContext;
         }
 
+        //returns all art from database
         public IEnumerable<Art> AllArt
         {
             get
@@ -23,11 +24,13 @@ namespace WebApplication1.Models
             }
         }
 
+        //gets art by id
         public Art GetArtById(int ArtId)
         {
             return _appDbContext.Art.FirstOrDefault(async => async.ArtId == ArtId);
         }
 
+        //create new art object
         public void CreateArt(Art art)
         {
             art.Available = true;
@@ -36,6 +39,7 @@ namespace WebApplication1.Models
 
         }
 
+        //deletes art from database
         public void DeleteArt(Art art)
         {
             List<ShoppingCartItem> items = new List<ShoppingCartItem>

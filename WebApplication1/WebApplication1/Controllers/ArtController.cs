@@ -18,6 +18,7 @@ namespace WebApplication1.Controllers
             _ArtRepository = ArtRepository;
         }
        
+        // view of all art
         public ViewResult List()
         {
             ArtListViewModel artListViewModel = new ArtListViewModel();
@@ -25,6 +26,7 @@ namespace WebApplication1.Controllers
             return View(artListViewModel);
         }
 
+        // view of one piece of art
         public IActionResult Details(int id)
         {
             var art = _ArtRepository.GetArtById(id);
@@ -35,14 +37,14 @@ namespace WebApplication1.Controllers
             return View(art);
         }
 
-
+        // form for new art
         [Authorize]
         public IActionResult NewArt()
         {
             return View();
         }
 
-
+        // form for new art redirects to list and adds new art if valid
         [HttpPost, Authorize]
         public IActionResult NewArt(Art art)
         {
@@ -55,6 +57,8 @@ namespace WebApplication1.Controllers
             return View(art);
         }
 
+        //deletes art
+        //TODO: Auth or userID koppelne
         public RedirectToActionResult DeleteArt(int artId)
         {
             var selectedArt = _ArtRepository.AllArt.FirstOrDefault(a => a.ArtId == artId);
