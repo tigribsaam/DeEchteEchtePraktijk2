@@ -47,7 +47,15 @@ namespace WebApplication1.Models
                     Months = shoppingCartItem.Months,
                     ArtId = shoppingCartItem.Art.ArtId,
                     Price = shoppingCartItem.Art.PricePerMonth
+              
                 };
+
+                var selectedArt = _applicationDbContext.Art.FirstOrDefault(a => a.ArtId == orderDetail.ArtId);
+                selectedArt.Available = false;
+
+                _applicationDbContext.Update<Art>(selectedArt);
+
+                //orderDetail.Art.Available = false;
 
                 order.OrderDetails.Add(orderDetail);
             }
@@ -85,7 +93,15 @@ namespace WebApplication1.Models
             return orders;
         }
 
+        public void ReturnArt(int artid)
+        {
+            var selectedArt = _applicationDbContext.Art.FirstOrDefault(a => a.ArtId == artid);
+            selectedArt.Available = true;
 
+            _applicationDbContext.Update<Art>(selectedArt);
+
+            _applicationDbContext.SaveChanges();
+        }
 
 
 

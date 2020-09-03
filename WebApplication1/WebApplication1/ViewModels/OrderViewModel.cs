@@ -9,5 +9,7 @@ namespace WebApplication1.ViewModels
     public class OrderViewModel
     {
         public List<Order> OrdersFromId { get; set; }
+
+
     }
 }

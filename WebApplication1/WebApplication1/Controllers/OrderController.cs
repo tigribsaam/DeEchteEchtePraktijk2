@@ -65,6 +65,18 @@ namespace WebApplication1.Controllers
             return View(orderViewModel);
         }
 
+        public RedirectToActionResult ReturnArt(int artId)
+        {
+            _orderRepository.ReturnArt(artId);
+            return RedirectToAction("Orders");
+        }
+
+
+
+
+
+
+
         public IActionResult DeleteAllOrders()
         {
             _orderRepository.DeleteAllOrders();
