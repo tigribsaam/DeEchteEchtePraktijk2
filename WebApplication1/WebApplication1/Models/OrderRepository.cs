@@ -28,7 +28,7 @@ namespace WebApplication1.Models
         public void CreateOrder(Order order, string _userId)
         {
 
-            order.PersonId = _userId;
+            order.UserId = _userId;
             _UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             order.OrderPlaced = DateTime.Now;
 

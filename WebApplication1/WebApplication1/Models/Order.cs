@@ -14,7 +14,7 @@ namespace WebApplication1.Models
         public int OrderId { get; set;}
 
         [BindNever]
-        public string PersonId { get; set; }
+        public string UserId { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
 
         [Required(ErrorMessage = "Voer uw voornaam in")]
