@@ -1,6 +1,25 @@
 ﻿@model Art 
 
-    <div>
+
+<div class="card border-primary mb-3" style="max-width: 15rem; padding: 20px; margin: 20px; display:inline-grid">
+    <div class="card-header">@Model.Name</div>
+    <div class="card-body">
+        <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId">
+            <img src="@Model.ImageURL" alt="@Model.Name" style=" width: 100%; display: block;">
+
+        </a>
+        <h5 class="card-title">@Model.Artist </h5>
+        <h5> € @Model.PricePerMonth per maand</h5>
+        <p type="button" class="btn btn-outline-info">
+            <a asp-controller="ShoppingCart"
+               asp-action="AddToShoppingCart"
+               asp-route-artId="@Model.ArtId">Huren</a>
+        </p>
+    </div>
+</div>
+
+
+    @*<div>
         <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId">
             <img src="@Model.ImageURL" alt="@Model.Name" width="175">
         </a>
@@ -12,4 +31,4 @@
                asp-action="AddToShoppingCart"
                asp-route-artId="@Model.ArtId">Huren</a>
         </p>
-    </div>
+    </div>*@

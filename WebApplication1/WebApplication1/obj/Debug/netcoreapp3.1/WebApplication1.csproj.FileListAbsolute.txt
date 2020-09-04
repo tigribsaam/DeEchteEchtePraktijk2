@@ -101,3 +101,4 @@ C:\Users\Birgi\source\repos\tigribsaam\DeEchteEchtePraktijk2\WebApplication1\Web
 C:\Users\Birgi\source\repos\tigribsaam\DeEchteEchtePraktijk2\WebApplication1\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ArtCard.cshtml.g.cs
 C:\Users\Birgi\source\repos\tigribsaam\DeEchteEchtePraktijk2\WebApplication1\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Index.cshtml.g.cs
 C:\Users\Birgi\source\repos\tigribsaam\DeEchteEchtePraktijk2\WebApplication1\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Order\Orders.cshtml.g.cs
+C:\Users\Birgi\source\repos\tigribsaam\DeEchteEchtePraktijk2\WebApplication1\WebApplication1\bin\Debug\netcoreapp3.1\libman.json
