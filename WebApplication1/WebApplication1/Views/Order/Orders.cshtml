@@ -34,9 +34,18 @@
                         <td>@item.Price</td>
                         <td>@order.OrderPlaced.AddMonths(item.Months).ToString("d")</td>
                         <td>
-                            <a asp-controller="Order"
-                               asp-action="ReturnArt"
-                               asp-route-artId="@item.ArtId">terug brengen</a>
+                            @if (item.Returned)
+                            {
+                                <i>Terug gebracht</i>
+                            }
+                            else
+                            {
+                                <a asp-controller="Order"
+                                   asp-action="ReturnArt"
+                                   asp-route-artId="@item.ArtId"
+                                   asp-route-orderId="@order.OrderId"
+                                   asp-route-orderDetailId="@item.OrderDetailId">terug brengen</a>
+                            }
                         </td>
 
                     </tr>

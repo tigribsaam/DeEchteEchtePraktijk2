@@ -70,9 +70,9 @@ namespace WebApplication1.Controllers
         }
 
         //action to return art 
-        public RedirectToActionResult ReturnArt(int artId)
+        public RedirectToActionResult ReturnArt(int artId, int orderId, int orderDetailId)
         {
-            _orderRepository.ReturnArt(artId);
+            _orderRepository.ReturnArt(artId, orderId, orderDetailId);
             return RedirectToAction("Orders");
         }
 

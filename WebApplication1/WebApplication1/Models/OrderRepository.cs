@@ -45,7 +45,8 @@ namespace WebApplication1.Models
                     Art = shoppingCartItem.Art,
                     Months = shoppingCartItem.Months,
                     ArtId = shoppingCartItem.Art.ArtId,
-                    Price = shoppingCartItem.Art.PricePerMonth
+                    Price = shoppingCartItem.Art.PricePerMonth,
+                    Returned = false
               
                 };
 
@@ -88,11 +89,21 @@ namespace WebApplication1.Models
                 }
             }
 
+            orders.Reverse();
+
             return orders;
         }
 
-        public void ReturnArt(int artid)
+        public void ReturnArt(int artid, int orderId, int orderDetailId)
         {
+            var selectedOrder = _applicationDbContext.Orders.Where(b => b.OrderId == orderId)
+                      .Include("OrderDetails")
+                      .FirstOrDefault();
+
+            var selectedOrderDetail = selectedOrder.OrderDetails.FirstOrDefault(b => b.OrderDetailId == orderDetailId);
+            selectedOrderDetail.Returned = true;
+
+
             var selectedArt = _applicationDbContext.Art.FirstOrDefault(a => a.ArtId == artid);
             selectedArt.Available = true;
 
@@ -139,10 +150,7 @@ namespace WebApplication1.Models
             _applicationDbContext.RemoveRange(orderdetails);
 
 
-            List<Order> orders = new List<Order>
-            {
-
-            };
+            List<Order> orders = new List<Order>();
 
             foreach (var Item in _applicationDbContext.Orders)
             {

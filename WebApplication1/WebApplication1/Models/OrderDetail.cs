@@ -14,5 +14,6 @@ namespace WebApplication1.Models
         public decimal Price { get; set; }
         public Art Art { get; set; }
         public Order Order { get; set; }
+        public bool Returned { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace WebApplication1.Models
     {
         void CreateOrder(Order order, string _userId);
         List<Order> GetOrdersFromId();
-        void ReturnArt(int artid);
+        void ReturnArt(int artid, int orderId, int orderDetailId);
 
 
         void DeleteAllOrders();
