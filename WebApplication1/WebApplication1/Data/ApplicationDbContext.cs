@@ -27,6 +27,7 @@ namespace WebApplication1.Data
                 {
                     ArtId = 1,
                     Name = "Bold & Brash",
+                    Artist = "Onbekend",
                     ImageURL = "http://art.ngfiles.com/images/425000/425133_catscr123_bold-and-brash.jpg",
                     Description = "More like belongs in the trash",
                     PricePerMonth = 150,
