@@ -40,7 +40,8 @@
                             }
                             else
                             {
-                                <a asp-controller="Order"
+                                <a type="button" class="btn btn-outline-primary"
+                                   asp-controller="Order"
                                    asp-action="ReturnArt"
                                    asp-route-artId="@item.ArtId"
                                    asp-route-orderId="@order.OrderId"
