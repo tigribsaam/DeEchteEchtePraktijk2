@@ -11,13 +11,16 @@
             <p>@Model.Description</p>
             <br />
             <h4>€ @Model.PricePerMonth per maand</h4>
-            <p type="button" class="btn btn-outline-info">
-                <a asp-controller="ShoppingCart"
+            <p>
+                <a type="button" class="btn btn-outline-primary"
+                   asp-controller="ShoppingCart"
                    asp-action="AddToShoppingCart"
                    asp-route-artId="@Model.ArtId">Huren</a>
             </p>
-            <p type="button" class="btn btn-outline-info">
-                <a asp-controller="Art"
+            <p>
+                <a 
+                   type="button" class="btn btn-outline-primary"
+                   asp-controller="Art"
                    asp-action="DeleteArt"
                    asp-route-artId="@Model.ArtId">verwijderen</a>
             </p>
