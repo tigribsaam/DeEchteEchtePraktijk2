@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
         <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId">
-            <img src="~/images/@Model.ImageURL" alt="@Model.Name" style=" width: 100%; display: block;">
+            <img src="@Model.ImageURL" alt="@Model.Name" style=" width: 100%; display: block;">
 
         </a>
         <p class="card-text">@Model.Artist </p>

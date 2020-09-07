@@ -260,7 +260,7 @@ namespace WebApplication1.Data.Migrations
                             Artist = "Onbekend",
                             Available = true,
                             Description = "More like belongs in the trash",
-                            ImageURL = "boldNbrash.jpg",
+                            ImageURL = "http://art.ngfiles.com/images/425000/425133_catscr123_bold-and-brash.jpg",
                             Name = "Bold & Brash",
                             PricePerMonth = 150
                         },
@@ -270,7 +270,7 @@ namespace WebApplication1.Data.Migrations
                             Artist = "James McNeill Whistler",
                             Available = true,
                             Description = "Well, firstly, it's quite big, which is excellent. Because if it was really small, you know, microscopic, then hardly anyone would be able to see it, which would be a tremendous shame. Secondly, and I'm getting quite near the end of this... analysis of this painting. Secondly... Why was it worth this man, here, spending fifty million of your American dollars on this portrait? And the answer is... well, this picture is worth such a lot of money, because... it's a picture of Whistler's mother.",
-                            ImageURL = "WhistlersMother.jpg",
+                            ImageURL = "https://www.abc.net.au/news/image/7269490-3x2-700x467.jpg",
                             Name = "Whistler's Mother",
                             PricePerMonth = 300
                         });
