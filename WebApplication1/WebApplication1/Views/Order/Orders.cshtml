@@ -65,30 +65,6 @@
         </table>
     }
 
-    @*{
-            <div>
-                @foreach (var item in order.OrderDetails)
-                {
-                    <p>@item.Art.Name</p>
-                    <p>@item.Months</p>
-                    <p>@item.Price</p>
-                    <p class="date">@order.OrderPlaced.ToString("d")</p>
-                    <p>Uiterlijk terug brengen voor: @order.OrderPlaced.AddMonths(item.Months).ToString("d")</p>
-                    <p>
-                        <a asp-controller="Order"
-                           asp-action="ReturnArt"
-                           asp-route-artId="@item.ArtId">terug brengen</a>
-                    </p>
-
-                }
-
-                <p>@order.OrderTotal.</p>
-
-                <br />
-                <br />
-                <br />
-            </div>
-        }*@
 }
 else if (Model.OrdersFromId.Count == 0)
 {

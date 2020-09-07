@@ -1,6 +1,10 @@
-﻿@model Art
+﻿@model NewArtViewModel
 
-<form asp-action="NewArt" method="post" class=" form-horizontal" role="form">
+@{
+    ViewData["Title"] = "New";
+}
+
+<form asp-action="NewArt" enctype="multipart/form-data" method="post" class=" form-horizontal" role="form">
     <h1>Kunst toevoegen</h1>
 
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -21,13 +25,24 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="ImageURL" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="ImageURL" class="form-control" />
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="ImageURL" class="control-label"></label>
+            <div class="custom-file">
+                <input asp-for="ImageURL" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
             <span asp-validation-for="ImageURL" class="text-danger"></span>
         </div>
     </div>
+
+    @*<div class="form-group">
+            <label asp-for="c" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="ImageURL" class="form-control" />
+                <span asp-validation-for="ImageURL" class="text-danger"></span>
+            </div>
+        </div>*@
 
     <div class="form-group">
         <label asp-for="Description" class="col-md-2 control-label"></label>
@@ -51,3 +66,16 @@
     </div>
 
 </form>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

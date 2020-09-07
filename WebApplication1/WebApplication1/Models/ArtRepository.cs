@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Data;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Models
 {
@@ -31,13 +34,46 @@ namespace WebApplication1.Models
         }
 
         //create new art object
-        public void CreateArt(Art art)
+        public void CreateArt(NewArtViewModel model)
         {
-            art.Available = true;
-            _appDbContext.Art.Add(art);
+            string uniqueFileName = UploadedFile(model.ImageURL);
+
+            Art newArt = new Art
+            {
+                Name = model.Name,
+                Artist = model.Artist,
+                ImageURL = uniqueFileName,
+                Description = model.Description,
+                PricePerMonth = model.PricePerMonth,
+                Available = true,
+            };
+
+            _appDbContext.Art.Add(newArt);
             _appDbContext.SaveChanges();
 
         }
+
+        private string UploadedFile(IFormFile ufile)
+        {
+            string uniqueFileName = null;
+
+            if (ufile != null)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + ufile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    ufile.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
+
+
+
+
+
 
         //deletes art from database
         public void DeleteArt(Art art)

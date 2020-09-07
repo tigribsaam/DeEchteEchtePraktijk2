@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Models
 {
@@ -10,7 +11,7 @@ namespace WebApplication1.Models
     {
         IEnumerable<Art> AllArt { get; }
         Art GetArtById(int ArtId);
-        void CreateArt(Art art);
+        void CreateArt(NewArtViewModel model);
         void DeleteArt(Art art);
     }
 }

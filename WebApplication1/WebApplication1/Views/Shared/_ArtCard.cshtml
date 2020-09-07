@@ -2,39 +2,29 @@
 
 
 <div class="card border-primary mb-3" style="max-width: 15rem; padding: 20px; margin: 20px; display:inline-grid">
-    <div class="card-header">
-        <h4>
-            @Model.Name
-        </h4>
-    </div>
+    <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId" class="nav-link" >
+        <div class="card-header">
+            <p>
+                <b>@Model.Name</b>
+            </p>
+        </div>
+    </a>
+    
+    
     <div class="card-body">
         <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId">
             <img src="~/images/@Model.ImageURL" alt="@Model.Name" style=" width: 100%; display: block;">
 
         </a>
-        <p class="card-text">@Model.Artist </p>
+        <p class="card-text"><b>@Model.Artist</b> </p>
         <p class="card-text"> € @Model.PricePerMonth per maand</p>
         <p>
             <a 
                type="button" class="btn btn-outline-primary"
-               asp-controller="ShoppingCart"
-               asp-action="AddToShoppingCart"
-               asp-route-artId="@Model.ArtId">Huren</a>
+               asp-controller="Art" 
+               asp-action="Details" 
+               asp-route-id="@Model.ArtId">Details</a>
         </p>
     </div>
 </div>
 
-
-    @*<div>
-        <a asp-controller="Art" asp-action="Details" asp-route-id="@Model.ArtId">
-            <img src="@Model.ImageURL" alt="@Model.Name" width="175">
-        </a>
-        <h2>@Model.Name</h2>
-        <p>@Model.Artist </p>
-        <p>€ @Model.PricePerMonth per maand</p>
-        <p class="button">
-            <a asp-controller="ShoppingCart"
-               asp-action="AddToShoppingCart"
-               asp-route-artId="@Model.ArtId">Huren</a>
-        </p>
-    </div>*@

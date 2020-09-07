@@ -46,15 +46,15 @@ namespace WebApplication1.Controllers
 
         // form for new art redirects to list and adds new art if valid
         [HttpPost, Authorize]
-        public IActionResult NewArt(Art art)
+        public IActionResult NewArt(NewArtViewModel model)
         {
 
             if (ModelState.IsValid)
             {
-                _ArtRepository.CreateArt(art);
+                _ArtRepository.CreateArt(model);
                 return RedirectToAction("List");
             }
-            return View(art);
+            return View(model);
         }
 
         //deletes art
