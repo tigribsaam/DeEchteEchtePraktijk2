@@ -17,7 +17,7 @@
                    asp-action="AddToShoppingCart"
                    asp-route-artId="@Model.ArtId">Huren</a>
             </p>
-            @if (Model.AllowedToEdit)
+            @if (Model.AllowedToEdit && Model.Available)
             {
                 <p>
                     <a type="button" class="btn btn-outline-primary"
