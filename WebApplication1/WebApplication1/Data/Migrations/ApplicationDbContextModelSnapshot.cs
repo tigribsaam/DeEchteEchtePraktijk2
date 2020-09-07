@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
-namespace WebApplication1.Data.Migrations
+namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -249,6 +249,9 @@ namespace WebApplication1.Data.Migrations
                     b.Property<int>("PricePerMonth")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserIdString")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ArtId");
 
                     b.ToTable("Art");
@@ -262,7 +265,8 @@ namespace WebApplication1.Data.Migrations
                             Description = "More like belongs in the trash",
                             ImageURL = "boldNbrash.jpg",
                             Name = "Bold & Brash",
-                            PricePerMonth = 150
+                            PricePerMonth = 150,
+                            UserIdString = "hallo"
                         },
                         new
                         {
@@ -272,7 +276,8 @@ namespace WebApplication1.Data.Migrations
                             Description = "Well, firstly, it's quite big, which is excellent. Because if it was really small, you know, microscopic, then hardly anyone would be able to see it, which would be a tremendous shame. Secondly, and I'm getting quite near the end of this... analysis of this painting. Secondly... Why was it worth this man, here, spending fifty million of your American dollars on this portrait? And the answer is... well, this picture is worth such a lot of money, because... it's a picture of Whistler's mother.",
                             ImageURL = "WhistlersMother.jpg",
                             Name = "Whistler's Mother",
-                            PricePerMonth = 300
+                            PricePerMonth = 300,
+                            UserIdString = "hallo"
                         });
                 });
 

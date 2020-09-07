@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WebApplication1.Data;
 using WebApplication1.ViewModels;
@@ -12,10 +13,16 @@ namespace WebApplication1.Models
     public class ArtRepository: IArtRepository
     {
         private readonly ApplicationDbContext _appDbContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public string _UserId;
 
-        public ArtRepository(ApplicationDbContext applicationDbContext)
+
+        public ArtRepository(ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
         {
             _appDbContext = applicationDbContext;
+            _httpContextAccessor = httpContextAccessor;
+            _UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         }
 
         //returns all art from database
@@ -46,6 +53,7 @@ namespace WebApplication1.Models
                 Description = model.Description,
                 PricePerMonth = model.PricePerMonth,
                 Available = true,
+                UserIdString = _UserId
             };
 
             _appDbContext.Art.Add(newArt);

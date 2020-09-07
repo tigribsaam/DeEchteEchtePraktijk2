@@ -36,6 +36,9 @@ namespace WebApplication1.Models
         [BindNever]
         public bool Available { get; set; }
 
+        [BindNever]
+        public string UserIdString { get; set; }
+
 
 
     }

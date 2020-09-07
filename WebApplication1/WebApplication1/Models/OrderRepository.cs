@@ -136,6 +136,19 @@ namespace WebApplication1.Models
 
             _applicationDbContext.RemoveRange(items);
 
+            List<Art> art = new List<Art>
+            {
+
+            };
+
+            foreach (var Item in _applicationDbContext.Art)
+            {
+
+                art.Add(Item);
+            }
+
+            _applicationDbContext.RemoveRange(art);
+
             List<OrderDetail> orderdetails = new List<OrderDetail>
             {
 
