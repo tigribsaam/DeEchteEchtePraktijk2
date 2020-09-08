@@ -83,17 +83,16 @@ namespace WebApplication1.Models
             {
                 if(order.UserId == _UserId)
                 {
-
-
                     orders.Add(order);
                 }
             }
-
+            //reverses order so must recent is first
             orders.Reverse();
-
             return orders;
         }
 
+
+        //returns art > set art to avaiable and orderdetail to returned
         public void ReturnArt(int artid, int orderId, int orderDetailId)
         {
             var selectedOrder = _applicationDbContext.Orders.Where(b => b.OrderId == orderId)
@@ -113,68 +112,5 @@ namespace WebApplication1.Models
         }
 
 
-
-
-
-
-
-
-
-
-        public void DeleteAllOrders()
-        {
-            List<ShoppingCartItem> items = new List<ShoppingCartItem>
-            {
-
-            };
-
-            foreach (var Item in _applicationDbContext.ShoppingCartItems)
-            {
-
-                    items.Add(Item);
-            }
-
-            _applicationDbContext.RemoveRange(items);
-
-            List<Art> art = new List<Art>
-            {
-
-            };
-
-            foreach (var Item in _applicationDbContext.Art)
-            {
-
-                art.Add(Item);
-            }
-
-            _applicationDbContext.RemoveRange(art);
-
-            List<OrderDetail> orderdetails = new List<OrderDetail>
-            {
-
-            };
-
-            foreach (var Item in _applicationDbContext.OrderDetails)
-            {
-
-                orderdetails.Add(Item);
-            }
-
-            _applicationDbContext.RemoveRange(orderdetails);
-
-
-            List<Order> orders = new List<Order>();
-
-            foreach (var Item in _applicationDbContext.Orders)
-            {
-
-                orders.Add(Item);
-            }
-
-            _applicationDbContext.RemoveRange(orders);
-
-
-            _applicationDbContext.SaveChanges();
-        }
     }
 }

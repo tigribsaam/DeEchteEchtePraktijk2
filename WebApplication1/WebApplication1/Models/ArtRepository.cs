@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +22,7 @@ namespace WebApplication1.Models
         {
             _appDbContext = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
+            //find userId from httpcontext
             _UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         }
@@ -61,6 +63,8 @@ namespace WebApplication1.Models
 
         }
 
+        //upload img to wwwroot/images and gives it a unique name
+        //returns unique name
         private string UploadedFile(IFormFile ufile)
         {
             string uniqueFileName = null;

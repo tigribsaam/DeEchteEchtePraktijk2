@@ -13,8 +13,5 @@ namespace WebApplication1.Models
         List<Order> GetOrdersFromId();
         void ReturnArt(int artid, int orderId, int orderDetailId);
 
-
-        void DeleteAllOrders();
-
     }
 }

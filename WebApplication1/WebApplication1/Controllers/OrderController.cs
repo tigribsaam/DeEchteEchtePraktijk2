@@ -26,6 +26,7 @@ namespace WebApplication1.Controllers
             _userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
+
         //view of checkout
         public IActionResult CheckOut()
         {
@@ -62,6 +63,7 @@ namespace WebApplication1.Controllers
         }
 
         //view of all orders made in the past by user
+        [Authorize]
         public ViewResult Orders()
         {
             OrderViewModel orderViewModel = new OrderViewModel();
@@ -76,16 +78,5 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Orders");
         }
 
-
-
-
-
-
-
-        public IActionResult DeleteAllOrders()
-        {
-            _orderRepository.DeleteAllOrders();
-            return View();
-        }
     }
 }

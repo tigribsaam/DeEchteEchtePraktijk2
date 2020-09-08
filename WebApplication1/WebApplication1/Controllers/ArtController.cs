@@ -63,12 +63,15 @@ namespace WebApplication1.Controllers
             return View(artViewModel);
         }
 
+
+
         // form for new art
         [Authorize]
         public IActionResult NewArt()
         {
             return View();
         }
+
 
         // form for new art redirects to list and adds new art if valid
         [HttpPost, Authorize]
@@ -83,12 +86,20 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
+
         //deletes art
-        //TODO: Auth or userID koppelne
-        public RedirectToActionResult DeleteArt(int artId)
+        public IActionResult DeleteArt(int artId)
         {
+            var art = _ArtRepository.GetArtById(artId);
+            if (art == null)
+            {
+                return NotFound();
+            }
             var selectedArt = _ArtRepository.AllArt.FirstOrDefault(a => a.ArtId == artId);
-            _ArtRepository.DeleteArt(selectedArt);
+            if (_UserId == selectedArt.UserIdString && selectedArt.Available)
+            {
+                _ArtRepository.DeleteArt(selectedArt);
+            }
             return RedirectToAction("List");
         }
     }
